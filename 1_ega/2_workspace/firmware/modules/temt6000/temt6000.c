@@ -8,7 +8,6 @@ float temt6000_set_calib(float set_calib){
     calib = set_calib;
     return calib;
 }
-
 /**
  * @brief Inicializa el adc en el pin del temt6000
  * 
@@ -44,12 +43,12 @@ float temt6000_get_current(float voltage){
 float temt6000_get_raw_lux(uint16_t adc_raw){
     return ((float)adc_raw / 4095.0);
 }
-
 /**
  * @brief Obtiene los lux
  * @param voltage
  * @return float lux
  */
+
 float temt6000_get_lux(uint16_t adc_raw){
     // float voltage = adc_get_voltage(adc_raw);
     // float current = temt6000_get_current(voltage);

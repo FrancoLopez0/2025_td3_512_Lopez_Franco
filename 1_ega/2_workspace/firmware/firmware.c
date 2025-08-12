@@ -779,6 +779,7 @@ void IRQ_ReadAdcFifo(){
  */
 void i2c_config(void){
     i2c_init(I2C_PORT, I2C_FREQ);
+    
     gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
     gpio_pull_up(I2C_SDA);
@@ -878,7 +879,6 @@ void adc_config(){
 
 int main() {
     stdio_init_all();
-
     q_raw_adc_values = xQueueCreate(BUFF_SIZE, sizeof(uint16_t));
     q_values_to_show = xQueueCreate(BUFF_SIZE*5, sizeof(float));
 
@@ -1025,3 +1025,4 @@ int main() {
     while (1) {
     }
 }
+

@@ -37,14 +37,7 @@ pico_sdk_init()
 
 add_executable(firmware firmware.c )
 
-# Agrega el subdirectorio con tus módulos
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../freertos ${CMAKE_BINARY_DIR}/freertos)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/modules/temt6000)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/modules/flash)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/modules/bh1750)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/modules/ds1307)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/modules/ui)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/modules/bh1750)
 
 pico_set_program_name(firmware "firmware")
 pico_set_program_version(firmware "0.1")
@@ -54,8 +47,11 @@ pico_enable_stdio_uart(firmware 0)
 pico_enable_stdio_usb(firmware 1)
 
 # Add the standard library to the build
-target_link_libraries(firmware
+target_link_libraries(
+        firmware
         pico_stdlib
+        hardware_adc
+        freertos
         )
 
 # Add the standard include files to the build
@@ -65,15 +61,7 @@ target_include_directories(firmware PRIVATE
 
 # Add any user requested libraries
 target_link_libraries(firmware 
-        flash
-        temt6000
-        ds1307
-        ui
-        bh1750
-        freertos
-        hardware_adc
-        hardware_pwm
-        pico_cyw43_arch_none
+        
         )
 
 pico_add_extra_outputs(firmware)
