@@ -1,0 +1,6 @@
+[submodule "2_egb/4_apps/gui/lux_control_front_web"]
+	path = 2_egb/4_apps/gui/lux_control_front_web
+	url = https://github.com/FrancoLopez0/lux_control_front_web.git
+[submodule "2_egb/4_apps/gui/lux_control_back_web"]
+	path = 2_egb/4_apps/gui/lux_control_back_web
+	url = https://github.com/FrancoLopez0/lux_control_back_web.git
