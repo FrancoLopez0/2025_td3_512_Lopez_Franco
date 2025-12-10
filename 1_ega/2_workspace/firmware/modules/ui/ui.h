@@ -3,10 +3,22 @@
 #include "string.h"
 
 #define MAX_SP          600
-#define MAX_LUX         1500
+#define MAX_LUX         1000
 #define OLED_ADDR       0x3C
 
 #define DEFAULT_BAR {.x = 0,.y = 7,.h = 10,.w = 128,.percent = 0}
+
+enum config_menu_enum{
+    hour_config,
+    minute_config,
+    second_config,
+    day_config,
+    month_config,
+    year_config,
+    min_config,
+    max_config,
+    not_config
+};
 
 typedef struct{
     uint8_t x;
@@ -17,13 +29,30 @@ typedef struct{
 }bar_t;
 
 typedef struct{
-    uint32_t sp;
-    uint32_t sp_f;
-    uint32_t rise_time_ms;
+    int16_t sp;
+    int16_t sp_f;
+    int16_t sp_0;
+    int16_t rise_time_ms;
     bool mode;
     uint8_t select;
     uint32_t lux;
+    uint8_t menu;
+    bool change_value_mode;
+    uint8_t hour;
+    uint8_t minute;
+    uint8_t sencond;
+    uint8_t day;
+    uint8_t month;
+    uint16_t year;
+    int16_t min;
+    int16_t max;
 }user_t;
+
+enum menu_enum{
+    params_menu,
+    config_menu,
+    log_menu
+};
 
 enum select_enum{
     set_lux,
@@ -76,3 +105,7 @@ void ui_update_user_sp(ssd1306_t *p_oled, bar_t *p_bar, uint32_t sp);
  * @param p_user 
  */
 void ui_update_bar(ssd1306_t *p_oled, bar_t *p_bar, user_t *p_user);
+
+void ui_user_config(ssd1306_t *p_oled, user_t *p_user);
+
+void ui_logs(ssd1306_t *p_oled, user_t *p_user);
